@@ -1,0 +1,41 @@
+{
+    "name": "时来运转(Tide Truns)",
+    "author": "EternalFuture゙",
+    "version": "1.0.0",
+    "introduce": {
+    "zh-cn": "今天晕气很好(bushi)",
+    "zh-hant": "",
+    "ru": "",
+    "en": "",
+    "ja": "",
+    "ko": "",
+    "it": "",
+    "es": "",
+    "fr": "",
+    "de": ""
+    },
+    "github": {
+        "open source": true,
+        "overview": "https://github.com/2079541547",
+        "url": "https://github.com/2079541547/Terraria-EFMod/tree/main/TideTurns/src"
+    },
+    "mod": {
+        "Modx": false,
+        "private data": true,
+        "page": true,
+        "platform": {
+            "Windows": {
+                "arm64": false,
+                "arm32": false,
+                "x86_64": false,
+                "x86": false
+            },
+            "Android": {
+                "arm64": true,
+                "arm32": true,
+                "x86_64": true,
+                "x86": true
+            }
+        }
+    }
+}

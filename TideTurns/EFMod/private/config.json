@@ -1,0 +1,11 @@
+{
+  "LuckyDamage": {
+    "enabled": false,
+    "mode": 0
+  },
+  "ItemRoulette": {
+    "enabled": false,
+    "number": 0,
+    "index": 5456
+  }
+}

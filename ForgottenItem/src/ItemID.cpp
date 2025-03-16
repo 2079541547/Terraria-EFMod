@@ -6,6 +6,7 @@
 #include <IL2CppArray.hpp>
 #include <log.hpp>
 
+/*
 void ItemID::initialize() {
     ItemID_Class = BNM::Class("Terraria.ID", "ItemID", BNM::Image("Assembly-CSharp.dll"));
     ItemID_Set = ItemID_Class.GetInnerClass("Sets");
@@ -18,14 +19,13 @@ void ItemID::initialize() {
 
     HOOK(ItemID_Set.GetMethod(".cctor", 0), cctor, old_cctor);
 }
+*/
 
-void ItemID::cctor(BNM::UnityEngine::Object *i) {
+void ItemID::cctor(void *i) {
 
-    old_cctor(i);
-
-    IL2CppArray<bool> Deprecated_v(*((void**)Deprecated.GetPointer()));
-    IL2CppArray<bool> ItemsThatShouldNotBeInInventory_v(*((void**)ItemsThatShouldNotBeInInventory.GetPointer()));
-    IL2CppArray<int> ShimmerTransformToItem_v(*((void**)ShimmerTransformToItem.GetPointer()));
+    IL2CppArray<bool> Deprecated_v(*((void**)Deprecated->GetPointer()));
+    IL2CppArray<bool> ItemsThatShouldNotBeInInventory_v(*((void**)ItemsThatShouldNotBeInInventory->GetPointer()));
+    IL2CppArray<int> ShimmerTransformToItem_v(*((void**)ShimmerTransformToItem->GetPointer()));
 
     for (int index = 0; index < Deprecated_v.Size(); ++index) {
         Deprecated_v.Set(index, false);
@@ -72,4 +72,11 @@ void ItemID::cctor(BNM::UnityEngine::Object *i) {
     ShimmerTransformToItem_v.Set(1648, 3398);
 
     LOGD("已解除物品移除限制");
+}
+
+void ItemID::Template(BNM::UnityEngine::Object* i) {
+    ((void(*)(void*))old_cctor)(i);
+    for (auto fun: T_cctor.FunArray) {
+        ((void(*)(void*))fun)(i);
+    }
 }

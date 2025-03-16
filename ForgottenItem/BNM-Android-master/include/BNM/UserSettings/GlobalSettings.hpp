@@ -121,7 +121,7 @@ inline void UNHOOK(PTR_T ptr) {
 
 
 // Dobby
-
+/*
 #include <dobby.h>
 
 template<typename PTR_T, typename NEW_T, typename T_OLD>
@@ -140,8 +140,9 @@ template<typename PTR_T>
 inline void UNHOOK(PTR_T ptr) {
     if ((void *) ptr != nullptr) DobbyDestroy((void *)ptr);
 }
+*/
 
-/*
+
 // Dummy
 #include <cassert>
 
@@ -164,7 +165,7 @@ inline void UNHOOK(PTR_T ptr) {
     assert("Нет ПО для подмены! (No hooking software!)");
     if ((void *) ptr != nullptr) ((void)0);
 }
-*/
+
 
 #include <dlfcn.h>
 

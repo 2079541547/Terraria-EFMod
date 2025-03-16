@@ -43,11 +43,19 @@ struct ModApiDescriptor {
     std::string Class;
     std::string Name;
     std::string Type;
-
+    int Arg;
+    
     inline size_t getID() const {
-        std::string combined = File + Namespace + Class + Name + Type;
-        return std::hash<std::string>{}(combined);
+            std::string combined = File + Namespace + Class + Name + Type;
+            return std::hash<std::string>{}(combined);
     }
+};
+
+struct HookTemplate {
+    void* Trampoline;
+    std::vector<void*> FunArray;
+
+    void Set(std::vector<void*> f) { FunArray = std::move(f); }
 };
 
 struct ModFuncDescriptor {
@@ -57,11 +65,12 @@ struct ModFuncDescriptor {
     std::string Name;
     std::string Type;
     int Arg;
+    HookTemplate* Template;
     std::vector<void *> FunPtr;
 
     inline size_t getID() const {
-        std::string combined = File + Namespace + Class + Name + Type + std::to_string(Arg);
-        return std::hash<std::string>{}(combined);
+            std::string combined = File + Namespace + Class + Name + Type + std::to_string(Arg);
+            return std::hash<std::string>{}(combined);
     }
 };
 
@@ -70,24 +79,17 @@ struct api {
     void * apiPtr;
 };
 
-struct ModDependency {
-    size_t id;
-    size_t version;
-};
-
 struct ModMetadata {
     std::string name;
     std::string author;
     std::string version;
-    std::vector<ModDependency> dependencies;
 };
-
 
 class EFModAPI final {
 private:
     std::vector<api> API;
     std::mutex APIMutex;
-
+    
     std::vector<ModFuncDescriptor> FuncDescriptor;
     std::mutex FuncDescriptorMutex;
 
@@ -95,80 +97,80 @@ private:
     std::mutex ApiDescriptorMutex;
 public:
     inline auto getApiDescriptor() {
-        return ApiDescriptor;
+            return ApiDescriptor;
     }
-
+    
     inline auto getFuncDescriptor() {
-        return FuncDescriptor;
+            return FuncDescriptor;
     }
-
+    
     inline void* getAPI(const ModApiDescriptor& api) {
-        std::lock_guard<std::mutex> lock(APIMutex);
-        for (auto a: API) {
-            if (a.id == api.getID()) {
-                return a.apiPtr;
+            std::lock_guard<std::mutex> lock(APIMutex);
+            for (auto a: API) {
+                    if (a.id == api.getID()) {
+                            return a.apiPtr;
+                    }
             }
-        }
-        return nullptr;
+            return nullptr;
     }
 
     inline void registerModApiDescriptor(const ModApiDescriptor& api) {
-        std::lock_guard<std::mutex> lock(ApiDescriptorMutex);
+            std::lock_guard<std::mutex> lock(ApiDescriptorMutex);
 
-        if (ApiDescriptor.empty()) {
-            ApiDescriptor.push_back(api);
-            return;
-        }
-
-        bool exists = false;
-        for (const auto& existingApi : ApiDescriptor) {
-            if (existingApi.getID() == api.getID()) {
-                exists = true;
-                break;
+            if (ApiDescriptor.empty()) {
+                    ApiDescriptor.push_back(api);
+                    return;
             }
-        }
 
-        if (!exists) {
-            ApiDescriptor.push_back(api);
-        }
+            bool exists = false;
+            for (const auto& existingApi : ApiDescriptor) {
+                    if (existingApi.getID() == api.getID()) {
+                            exists = true;
+                            break;
+                    }
+            }
+
+            if (!exists) {
+                    ApiDescriptor.push_back(api);
+            }
     }
 
     inline void registerModFuncDescriptor(const ModFuncDescriptor& Extend) {
         std::lock_guard<std::mutex> lock(FuncDescriptorMutex);
-        if (FuncDescriptor.empty()) {
-            FuncDescriptor.push_back(Extend);
-            return;
-        }
-        for (auto _: FuncDescriptor) {
-            if (_.getID() == Extend.getID()) {
-                _.FunPtr.insert(_.FunPtr.end(), Extend.FunPtr.begin(), Extend.FunPtr.end());
-            } else {
-                FuncDescriptor.push_back(Extend);
+        bool found = false;
+
+        for (auto& funcDesc : FuncDescriptor) {
+            if (funcDesc.getID() == Extend.getID()) {
+                funcDesc.FunPtr.insert(funcDesc.FunPtr.end(), Extend.FunPtr.begin(), Extend.FunPtr.end());
+                found = true;
+                break;
             }
+        }
+
+        if (!found) {
+            FuncDescriptor.push_back(Extend);
         }
     }
 
     inline void registerAPI(size_t api_id, void *ptr) {
-        API.push_back({api_id, ptr});
+            API.push_back({api_id, ptr});
     }
-
+    
     inline static EFModAPI& getEFModAPI() {
-        static EFModAPI instance;
-        return instance;
+            static EFModAPI instance;
+            return instance;
     }
 };
 
 class EFMod {
 public:
     virtual ~EFMod() {}
+    
+    int standard = 20250316; //请不要乱修改，这是Mod标准，可能会导致某些错误因素
 
-    int standard = 20250110; //请不要乱修改，这是Mod标准，可能会导致某些错误因素
-
-    virtual int run(EFModAPI *mod) = 0;
-    virtual void RegisterExtend(EFModAPI* mod) = 0;
-    virtual void RegisterAPI(EFModAPI* mod) = 0;
+    virtual int initialize(EFModAPI *mod, std::filesystem::path path) = 0;
+    virtual void Register(EFModAPI *mod, std::filesystem::path path) = 0;
     virtual ModMetadata getInfo() = 0;
-    virtual void getPrivate(std::filesystem::path Path) = 0;
 };
 
 

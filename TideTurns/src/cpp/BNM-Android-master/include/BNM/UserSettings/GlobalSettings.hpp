@@ -20,23 +20,11 @@ static_assert(false, "ByNameModding requires C++20 and above!");
 //#define UNITY_VER 212 // 2021.2.x
 //#define UNITY_VER 213 // 2021.3.x
 //#define UNITY_VER 221 // 2022.1.x
-//#define UNITY_VER 222 // 2022.2.x - 2022.3.x
+#define UNITY_VER 222 // 2022.2.x - 2022.3.x
 //#define UNITY_VER 231 // 2023.1.x
 //#define UNITY_VER 232 // 2023.2.x+
 
-#if defined(__arm__)
-#define UNITY_VER 194 // 2019.4.x
-#elif defined(__aarch64__)
-#define UNITY_VER 213 // 2021.3.x
-#elif defined(__i386__)
-#define UNITY_VER 194 // 2019.4.x for x86
-#elif defined(__x86_64__)
-#define UNITY_VER 213 // 2021.3.x for x86_64
-#else
-#error "Unsupported architecture"
-#endif
-
-#define UNITY_PATCH_VER 16 // Для особых случаев (For special cases)
+#define UNITY_PATCH_VER 32 // Для особых случаев (For special cases)
 
 //! Включить устаревший код (если есть)
 //! Allow to use deprecated methods (if any)
@@ -72,6 +60,10 @@ static_assert(false, "ByNameModding requires C++20 and above!");
 //! The good old days...
 // #define BNM_OLD_GOOD_DAYS
 
+//! Использовать аллокатор il2cpp для Mono массивов вместо базового
+//! Use il2cpp's allocator for Mono arrays instead of basic
+#define BNM_USE_IL2CPP_ALLOCATOR
+
 #ifndef NDEBUG
 
 //! Методы str() в структурах
@@ -85,6 +77,10 @@ static_assert(false, "ByNameModding requires C++20 and above!");
 //! Проверять объекты mono в их методах
 //! Check mono's objects in their methods
 #define BNM_ALLOW_SELF_CHECKS
+
+//! Проверять классы при установке объекта полям и методам
+//! Check classes when setting an instance to fields and methods
+#define BNM_CHECK_INSTANCE_TYPE
 
 #define BNM_DEBUG
 
@@ -105,8 +101,6 @@ static_assert(false, "ByNameModding requires C++20 and above!");
 
 // Shadowhook
 /*
-#include "shadowhook.h"
-
 template<typename PTR_T, typename NEW_T, typename T_OLD>
 inline void *HOOK(PTR_T ptr, NEW_T newMethod, T_OLD &oldBytes) {
     if ((void *) ptr != nullptr) return shadowhook_hook_func_addr((void *)ptr, (void *) newMethod, (void **) &oldBytes);
@@ -123,24 +117,53 @@ template<typename PTR_T>
 inline void UNHOOK(PTR_T ptr) {
     if ((void *) ptr != nullptr) shadowhook_unhook((void *)ptr);
 }
- */
-
+*/
 
 
 // Dobby
-
-
-template<typename PTR_T, typename NEW_T, typename T_OLD>
-inline void *HOOK(PTR_T ptr, NEW_T newMethod, T_OLD &oldBytes) {}
+/*
+#include <dobby.h>
 
 template<typename PTR_T, typename NEW_T, typename T_OLD>
-inline void *HOOK(PTR_T ptr, NEW_T newMethod, T_OLD &&oldBytes) {}
+inline void *HOOK(PTR_T ptr, NEW_T newMethod, T_OLD &oldBytes) {
+    if ((void *) ptr != nullptr) DobbyHook((void *)ptr, (void *) newMethod, (void **) &oldBytes);
+    return (void *) ptr;
+}
+
+template<typename PTR_T, typename NEW_T, typename T_OLD>
+inline void *HOOK(PTR_T ptr, NEW_T newMethod, T_OLD &&oldBytes) {
+    if ((void *) ptr != nullptr) DobbyHook((void *)ptr, (void *) newMethod, (void **) &oldBytes);
+    return (void *) ptr;
+}
 
 template<typename PTR_T>
-inline void UNHOOK(PTR_T ptr) {}
+inline void UNHOOK(PTR_T ptr) {
+    if ((void *) ptr != nullptr) DobbyDestroy((void *)ptr);
+}
+*/
 
+// Dummy
+#include <cassert>
 
+template<typename PTR_T, typename NEW_T, typename T_OLD>
+inline void *HOOK(PTR_T ptr, NEW_T newMethod, T_OLD &oldBytes) {
+    assert("Нет ПО для подмены! (No hooking software!)");
+    if ((void *) ptr != nullptr) ((void)0);
+    return nullptr;
+}
 
+template<typename PTR_T, typename NEW_T, typename T_OLD>
+inline void *HOOK(PTR_T ptr, NEW_T newMethod, T_OLD &&oldBytes) {
+    assert("Нет ПО для подмены! (No hooking software!)");
+    if ((void *) ptr != nullptr) ((void)0);
+    return nullptr;
+}
+
+template<typename PTR_T>
+inline void UNHOOK(PTR_T ptr) {
+    assert("Нет ПО для подмены! (No hooking software!)");
+    if ((void *) ptr != nullptr) ((void)0);
+}
 
 #include <dlfcn.h>
 
@@ -209,4 +232,4 @@ namespace BNM {
 #endif
 }
 
-#define BNM_VER "2.2.3"
+#define BNM_VER "2.2.8"

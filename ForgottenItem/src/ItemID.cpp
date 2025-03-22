@@ -6,21 +6,6 @@
 #include <IL2CppArray.hpp>
 #include <log.hpp>
 
-/*
-void ItemID::initialize() {
-    ItemID_Class = BNM::Class("Terraria.ID", "ItemID", BNM::Image("Assembly-CSharp.dll"));
-    ItemID_Set = ItemID_Class.GetInnerClass("Sets");
-
-    Count = ItemID_Class.GetField("Count");
-    Deprecated = ItemID_Set.GetField("Deprecated");
-    ItemsThatShouldNotBeInInventory = ItemID_Set.GetField("ItemsThatShouldNotBeInInventory");
-    ShimmerTransformToItem = ItemID_Set.GetField("ShimmerTransformToItem");
-
-
-    HOOK(ItemID_Set.GetMethod(".cctor", 0), cctor, old_cctor);
-}
-*/
-
 void ItemID::cctor(void *i) {
 
     IL2CppArray<bool> Deprecated_v(*((void**)Deprecated->GetPointer()));

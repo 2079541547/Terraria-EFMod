@@ -7,353 +7,97 @@
 #include <IL2CppArray.hpp>
 #include <unordered_map>
 
+void Recipe::RegisterRecipe(const Recipe::GameRecipe &recipe) {
+    // 隔离作用域
+    {
+        requiredItem->SetInstance(currentRecipe->Get());
+        createItem->SetInstance(currentRecipe->Get());
+        requiredTile->SetInstance(currentRecipe->Get());
 
-std::unordered_map<int, std::vector<int>> LuminousTools = {
-        { 3458, { 2785, 2783, 2782 } },
-        { 3456, { 2775, 2773, 2772 } },
-        { 3457, { 2780, 2778, 2777 } },
-        { 3459, { 3465, 3463, 3462 } }
-};
+        auto& itemArray = *reinterpret_cast<IL2CppArray<BNM::UnityEngine::Object*>*>(requiredItem->GetPointer());
+        auto& tileArray = *reinterpret_cast<IL2CppArray<int>*>(requiredTile->GetPointer());
 
-std::vector<int> giftV = {
-        599,
-        600,
-        601
-};
+        // 设置产物
+        ItemSetDefaults->SetInstance(createItem->Get());
+        ItemSetDefaults->Call(recipe.resultID);
 
-void Recipe::SetupRecipeGroups(void *i) {
+        // 设置材料
+        for (size_t i = 0; i < recipe.materials.size(); ++i) {
+            ItemSetDefaults->SetInstance(itemArray.At(i));
+            ItemSetDefaults->Call(recipe.materials[i].itemID);
 
-    for(auto _: LuminousTools) {
-        for (auto __: _.second) {
-            requiredItem->SetInstance(currentRecipe->Get());
-            createItem->SetInstance(currentRecipe->Get());
-            requiredTile->SetInstance(currentRecipe->Get());
-
-            IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-            IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-            ItemSetDefaults->SetInstance(createItem->Get());
-            ItemSetDefaults->Call(__);
-
-            ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-            ItemSetDefaults->Call(_.first);
-
-            stack->SetInstance(requiredItem_v.At(0));
-            stack->Set(7);
-
-            ItemSetDefaults->SetInstance(requiredItem_v.At(1));
-            ItemSetDefaults->Call(3467);
-
-            stack->SetInstance(requiredItem_v.At(1));
-            stack->Set(6);
-
-            requiredTile_v.At(0) = 412;
-            AddRecipe->Call();
+            stack->SetInstance(itemArray.At(i));
+            stack->Set(recipe.materials[i].stack);
         }
-    }
 
-    // 骷髅头弓
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(4058);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(1274);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(1));
-        ItemSetDefaults->Call(154);
-
-        stack->SetInstance(requiredItem_v.At(1));
-        stack->Set(50);
-
-        requiredTile_v.At(0) = 18;
-        AddRecipe->Call();
-    }
-
-// 仅颜色染料
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(3978);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(3385);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(1));
-        ItemSetDefaults->Call(3386);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(2));
-        ItemSetDefaults->Call(3387);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(3));
-        ItemSetDefaults->Call(3388);
-
-        requiredTile_v.At(0) = 228;
-        AddRecipe->Call();
-    }
-
-// 苹果派切片
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(4010);
-
-        stack->SetInstance(createItem->Get());
-        stack->Set(4);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(4011);
+        // 设置工作站
+        if (recipe.craftStation != 0) {
+            tileArray.At(0) = recipe.craftStation;
+        }
 
         AddRecipe->Call();
     }
+}
 
-// 苹果派
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
+void Recipe::SetupRecipeGroups(void* i) {
 
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
+    // 流明工具系列
+    const std::vector<GameRecipe> luminousRecipes = {
+            GameRecipe(2785, {CraftMaterial(3458,7), CraftMaterial(3467,6)}, 412),
+            GameRecipe(2783, {CraftMaterial(3458,7), CraftMaterial(3467,6)}, 412),
+            GameRecipe(2782, {CraftMaterial(3458,7), CraftMaterial(3467,6)}, 412),
+            GameRecipe(3465, {CraftMaterial(3459,7), CraftMaterial(3467,6)}, 412),
+            GameRecipe(3463, {CraftMaterial(3459,7), CraftMaterial(3467,6)}, 412),
+            GameRecipe(3462, {CraftMaterial(3459,7), CraftMaterial(3467,6)}, 412)
+    };
 
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(4011);
+    // 核心配方集合
+    const std::vector<GameRecipe> coreRecipes = {
+            // 骷髅头弓
+            GameRecipe(4058, {CraftMaterial(1274), CraftMaterial(154,50)}, 18),
 
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(4010);
+            // 颜色染料
+            GameRecipe(3978, {CraftMaterial(3385), CraftMaterial(3386),
+                              CraftMaterial(3387), CraftMaterial(3388)}, 228),
 
-        stack->SetInstance(requiredItem_v.At(0));
-        stack->Set(4);
+            // 苹果派系列
+            GameRecipe(4010, {CraftMaterial(4011)}, 0),
+            GameRecipe(4011, {CraftMaterial(4010,4)}, 0),
 
-        AddRecipe->Call();
+            // 第一分形
+            GameRecipe(4722, {CraftMaterial(757), CraftMaterial(3827),
+                              CraftMaterial(3787), CraftMaterial(1570,2),
+                              CraftMaterial(2880)}, 134),
+
+            // 骨块合成
+            GameRecipe(766, {CraftMaterial(154)}, 18),
+
+            // 哥布林装备
+            GameRecipe(3851, {CraftMaterial(3822,50)}, 0),  // 雷管背包
+            GameRecipe(3848, {CraftMaterial(3822,50)}, 0),  // 面具
+            GameRecipe(3849, {CraftMaterial(3822,50)}, 0),  // 炸弹帽
+            GameRecipe(3848, {CraftMaterial(3822,70)}, 0),  // 埃特尼亚标枪
+
+            // 礼物系列
+            GameRecipe(599, {CraftMaterial(1869)}, 0),
+            GameRecipe(600, {CraftMaterial(1869)}, 0),
+            GameRecipe(601, {CraftMaterial(1869)}, 0),
+
+            // 伪装宝箱
+            GameRecipe(3705, {CraftMaterial(3886)}, 0),
+            GameRecipe(3706, {CraftMaterial(3887)}, 0),
+
+            // 特殊物品
+            GameRecipe(5013, {}, 79)  // 睡觉图标
+    };
+
+    // 批量注册
+    for (const auto& recipe : luminousRecipes) {
+        RegisterRecipe(recipe);
     }
-
-// 第一分形
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(4722);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(757);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(1));
-        ItemSetDefaults->Call(3827);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(2));
-        ItemSetDefaults->Call(3787);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(3));
-        ItemSetDefaults->Call(1570);
-
-        stack->SetInstance(requiredItem_v.At(3));
-        stack->Set(2);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(4));
-        ItemSetDefaults->Call(2880);
-
-        requiredTile_v.At(0) = 134;
-        AddRecipe->Call();
+    for (const auto& recipe : coreRecipes) {
+        RegisterRecipe(recipe);
     }
-
-// 骨块
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(766);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(154);
-
-        requiredTile_v.At(0) = 18;
-        AddRecipe->Call();
-    }
-
-// 小妖魔雷管背包
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(3851);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(3822);
-
-        stack->SetInstance(requiredItem_v.At(0));
-        stack->Set(50);
-
-        AddRecipe->Call();
-    }
-
-// 哥布林面具
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(3848);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(3822);
-
-        stack->SetInstance(requiredItem_v.At(0));
-        stack->Set(50);
-
-        AddRecipe->Call();
-    }
-
-// 埃特尼亚标枪
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(3848);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(3822);
-
-        stack->SetInstance(requiredItem_v.At(0));
-        stack->Set(70);
-
-        AddRecipe->Call();
-    }
-
-// 哥布林炸弹帽
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(3849);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(3822);
-
-        stack->SetInstance(requiredItem_v.At(0));
-        stack->Set(50);
-
-        AddRecipe->Call();
-    }
-
-// 旧礼物
-    for (auto _ : giftV) {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(_);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(1869);
-
-        AddRecipe->Call();
-    }
-
-// Fake_newchest1
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(3705);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(3886);
-
-        AddRecipe->Call();
-    }
-
-// Fake_newchest2
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(3706);
-
-        ItemSetDefaults->SetInstance(requiredItem_v.At(0));
-        ItemSetDefaults->Call(3887);
-
-        AddRecipe->Call();
-    }
-
-    // 睡觉图标
-    {
-        requiredItem->SetInstance(currentRecipe->Get());
-        createItem->SetInstance(currentRecipe->Get());
-        requiredTile->SetInstance(currentRecipe->Get());
-
-        IL2CppArray<BNM::UnityEngine::Object*> requiredItem_v(*((void**)requiredItem->GetPointer()));
-        IL2CppArray<int> requiredTile_v(*((void**)requiredTile->GetPointer()));
-
-        ItemSetDefaults->SetInstance(createItem->Get());
-        ItemSetDefaults->Call(5013);
-
-        requiredTile_v.At(0) = 79;
-        AddRecipe->Call();
-    }
-
 }
 
 void Recipe::Template(BNM::UnityEngine::Object *i) {

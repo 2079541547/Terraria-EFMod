@@ -19,6 +19,22 @@ namespace Recipe {
     inline BNM::Field<BNM::Structures::Mono::Array<BNM::UnityEngine::Object*>*>* requiredItem;
     inline BNM::Field<BNM::Structures::Mono::Array<int>*>* requiredTile;
 
+    struct CraftMaterial {
+        int itemID;
+        int stack;
+        explicit CraftMaterial(int id, int count = 1) : itemID(id), stack(count) {}
+    };
+
+    struct GameRecipe {
+        int resultID;
+        std::vector<CraftMaterial> materials;
+        int craftStation;
+        explicit GameRecipe(int res, std::initializer_list<CraftMaterial> mats, int station = 0)
+                : resultID(res), materials(mats), craftStation(station) {}
+    };
+
+    void RegisterRecipe(const GameRecipe& recipe);
+
     void SetupRecipeGroups(void* i);
     inline void* old_SetupRecipeGroups = nullptr;
 

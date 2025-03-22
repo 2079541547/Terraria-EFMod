@@ -6,55 +6,35 @@
 #include <IL2CppArray.hpp>
 #include <log.hpp>
 
-void ItemID::cctor(void *i) {
+void ItemID::cctor(void* i) {
 
-    IL2CppArray<bool> Deprecated_v(*((void**)Deprecated->GetPointer()));
-    IL2CppArray<bool> ItemsThatShouldNotBeInInventory_v(*((void**)ItemsThatShouldNotBeInInventory->GetPointer()));
-    IL2CppArray<int> ShimmerTransformToItem_v(*((void**)ShimmerTransformToItem->GetPointer()));
+    auto& Deprecated_v = *reinterpret_cast<IL2CppArray<bool>*>(Deprecated->GetPointer());
+    auto& ItemsThatShouldNotBeInInventory_v = *reinterpret_cast<IL2CppArray<bool>*>(ItemsThatShouldNotBeInInventory->GetPointer());
+    auto& ShimmerTransformToItem_v = *reinterpret_cast<IL2CppArray<int>*>(ShimmerTransformToItem->GetPointer());
 
-    for (int index = 0; index < Deprecated_v.Size(); ++index) {
-        Deprecated_v.Set(index, false);
-        ItemsThatShouldNotBeInInventory_v.Set(index, false);
+    std::ranges::fill(Deprecated_v, false);
+    std::ranges::fill(ItemsThatShouldNotBeInInventory_v, false);
+
+    // 定义物品转换关系表
+    constexpr std::array transformPairs = {
+            // 双向转换对 (源物品ID, 目标物品ID)
+            std::pair{3357, 3331},  // 拜月相关
+            std::pair{3868, 3861},  // 食人魔
+            std::pair{3862, 3867},  // 黑暗魔法师
+            std::pair{2881, 3358},  // 火星飞碟
+            std::pair{3847, 3865},  // 食人魔面具
+            std::pair{3854, 3853},  // 无趣弓
+            std::pair{2901, 2989},  // 邪教徒
+            std::pair{2990, 2902},   // 邪教徒分支
+            std::pair{3404, 1649},  // 毒孢旗
+            std::pair{3398, 1648}   // 残手旗
+    };
+
+    // 批量设置双向转换关系
+    for (const auto& [src, dest] : transformPairs) { // 结构化绑定解包
+        ShimmerTransformToItem_v.Set(src, dest);
+        ShimmerTransformToItem_v.Set(dest, src); // 自动生成反向映射
     }
-
-    //拜月
-    ShimmerTransformToItem_v.Set(3357, 3331);
-    ShimmerTransformToItem_v.Set(3331, 3357);
-
-    //食人魔
-    ShimmerTransformToItem_v.Set(3868, 3861);
-    ShimmerTransformToItem_v.Set(3861, 3868);
-
-    //黑暗魔法师
-    ShimmerTransformToItem_v.Set(3862, 3867);
-    ShimmerTransformToItem_v.Set(3867, 3862);
-
-    //火星飞碟
-    ShimmerTransformToItem_v.Set(2881, 3358);
-    ShimmerTransformToItem_v.Set(3358, 2881);
-
-    //食人魔面具
-    ShimmerTransformToItem_v.Set(3847, 3865);
-    ShimmerTransformToItem_v.Set(3865, 3847);
-
-    //无趣弓
-    ShimmerTransformToItem_v.Set(3854, 3853);
-    ShimmerTransformToItem_v.Set(3853, 3854);
-
-    //邪教徒
-    ShimmerTransformToItem_v.Set(2901, 2989);
-    ShimmerTransformToItem_v.Set(2989, 2901);
-
-    ShimmerTransformToItem_v.Set(2990, 2902);
-    ShimmerTransformToItem_v.Set(2902, 2990);
-
-    //毒孢旗
-    ShimmerTransformToItem_v.Set(3404, 1649);
-    ShimmerTransformToItem_v.Set(1649, 3404);
-
-    //残手旗
-    ShimmerTransformToItem_v.Set(3398, 1648);
-    ShimmerTransformToItem_v.Set(1648, 3398);
 
     LOGD("已解除物品移除限制");
 }

@@ -14,7 +14,6 @@ public:
     int initialize(EFModAPI *mod, std::filesystem::path path) override {
 
         //=== ItemID ===//
-
         ItemID::old_cctor = mod->getAPI({
                                                 "Assembly-CSharp.dll",
                                                 "Terraria.ID",
@@ -37,6 +36,7 @@ public:
             if (field == "Deprecated") ItemID::Deprecated = static_cast<BNM::Field<BNM::Structures::Mono::Array<bool> *> *>(ptr);
             else if (field == "ItemsThatShouldNotBeInInventory") ItemID::ItemsThatShouldNotBeInInventory = static_cast<BNM::Field<BNM::Structures::Mono::Array<bool> *> *>(ptr);
             else if (field == "ShimmerTransformToItem") ItemID::ShimmerTransformToItem = static_cast<BNM::Field<BNM::Structures::Mono::Array<int> *> *>(ptr);
+            else if (field == "ItemsThatAreProcessedAfterNormalContentSample") ItemID::ItemsThatAreProcessedAfterNormalContentSample = static_cast<BNM::Field<BNM::Structures::Mono::List<int> *> *>(ptr);
             else LOGE("未知字段: %s", field.c_str());
         }
 

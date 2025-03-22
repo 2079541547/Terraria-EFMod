@@ -13,6 +13,7 @@ namespace ItemID {
     inline BNM::Field <BNM::Structures::Mono::Array<bool>*>* Deprecated;
     inline BNM::Field <BNM::Structures::Mono::Array<bool>*>* ItemsThatShouldNotBeInInventory;
     inline BNM::Field <BNM::Structures::Mono::Array<int>*>* ShimmerTransformToItem;
+    inline BNM::Field <BNM::Structures::Mono::List<int>*>* ItemsThatAreProcessedAfterNormalContentSample;
 
     void cctor(void* i);
     inline void* old_cctor = nullptr;
@@ -26,6 +27,7 @@ namespace ItemID {
     inline std::vector<std::string> Fields = {
             "Deprecated",
             "ItemsThatShouldNotBeInInventory",
-            "ShimmerTransformToItem"
+            "ShimmerTransformToItem",
+            "ItemsThatAreProcessedAfterNormalContentSample"
     };
 }

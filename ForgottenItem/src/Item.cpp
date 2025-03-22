@@ -5,6 +5,11 @@
 #include <Item.hpp>
 #include <log.hpp>
 
+int buyPrice(int platinum = 0, int gold = 0, int silver = 0, int copper = 0)
+{
+    return copper + silver * 100 + gold * 100 * 100 + platinum * 100 * 100 * 100;
+}
+
 void Item::SetDefaults3(void *instance, int t) {
     auto i = (BNM::UnityEngine::Object*)instance;
 
@@ -133,7 +138,7 @@ void Item::SetDefaults4(void *instance, int t) {
             noMelee->Set(true);
 
             value->SetInstance(i);
-            value->Set(buyPrice->Call(0, 5, 0, 0));
+            value->Set(114514);
 
             ranged->SetInstance(i);
             ranged->Set(true);

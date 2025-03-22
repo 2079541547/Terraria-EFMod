@@ -1,0 +1,40 @@
+[info]
+name = "追踪者(Seeker)"
+author = "EternalFuture゙"
+version = "1.0.0"
+
+[github]
+open_source = true
+overview = "https://github.com/2079541547"
+url = "https://github.com/2079541547/Terraria-EFMod/tree/main/Seeker/src"
+
+[platform.windows]
+arm64 = false
+arm32 = false
+x86_64 = false
+x86 = false
+
+[platform.android]
+arm64 = true
+arm32 = true
+x86_64 = false
+x86 = false
+
+[introduce]
+zh-cn = "已为你的弹幕安装北斗卫星导航"
+zh-hant = "已為你的彈幕安裝北斗衛星導航"
+en = "Your projectiles are now equipped with BeiDou satellite navigation."
+ja = "あなたの弾幕に北斗衛星ナビゲーションを搭載しました。"
+ko = "당신의 탄막에 베이두 위성 내비게이션을 설치했습니다."
+it = "I tuoi proiettili sono ora dotati di navigazione satellitare BeiDou."
+es = "Tus proyectiles ahora están equipados con navegación por satélite BeiDou."
+fr = "Vos projectiles sont désormais équipés de la navigation par satellite BeiDou."
+de = "Deine Geschosse sind jetzt mit dem BeiDou-Satellitennavigationssystem ausgestattet."
+
+[[loaders]]
+name = "TEFModLoader-EternalFuture゙"
+supported_versions = ["20250316"]
+
+[mod]
+standards = 20250316
+modx = false

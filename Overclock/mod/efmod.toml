@@ -1,0 +1,40 @@
+[info]
+name = "超频(Overclock)"
+author = "EternalFuture゙"
+version = "1.0.0"
+
+[github]
+open_source = true
+overview = "https://github.com/2079541547"
+url = "https://github.com/2079541547/Terraria-EFMod/tree/main/Overclock/src"
+
+[platform.windows]
+arm64 = false
+arm32 = false
+x86_64 = false
+x86 = false
+
+[platform.android]
+arm64 = true
+arm32 = true
+x86_64 = false
+x86 = false
+
+[introduce]
+zh-cn = "你的物品被超频了，它比以前更快！"
+zh-hant = "你的物品被超頻了，它比以前更快！"
+en = "Your items have been overclocked, they are faster than ever!"
+ja = "あなたのアイテムはオーバークロックされ、以前よりも速くなりました！"
+ko = "당신의 아이템이 오버클럭되어 이전보다 더 빨라졌습니다!"
+it = "I tuoi oggetti sono stati overcloccati, sono più veloci che mai!"
+es = "¡Tus objetos han sido overclockeados, son más rápidos que nunca!"
+fr = "Vos objets ont été overclockés, ils sont plus rapides que jamais !"
+de = "Deine Gegenstände wurden übertaktet, sie sind schneller als je zuvor!"
+
+[[loaders]]
+name = "TEFModLoader-EternalFuture゙"
+supported_versions = ["20250316"]
+
+[mod]
+standards = 20250316
+modx = false

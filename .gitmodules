@@ -1,9 +1,3 @@
-[submodule "ForgottenItem/BNM-Android-master"]
-	path = ForgottenItem/BNM-Android-master
-	url = https://github.com/ByNameModding/BNM-Android.git
-[submodule "Seeker/BNM-Android-master"]
-	path = Seeker/BNM-Android-master
-	url = https://github.com/ByNameModding/BNM-Android.git
-[submodule "Overclock/BNM-Android-master"]
-	path = Overclock/BNM-Android-master
+[submodule "BNM-Android"]
+	path = BNM-Android
 	url = https://github.com/ByNameModding/BNM-Android.git

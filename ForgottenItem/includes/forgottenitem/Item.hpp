@@ -52,6 +52,7 @@ namespace Item {
     void SetFoodDefaults_Template(BNM::UnityEngine::Object* i, int t);
     inline void* old_SetFoodDefaults = nullptr;
 
+
     void Register(EFModAPI* mod);
     void Initialize(EFModAPI* mod);
 

@@ -15,7 +15,7 @@ BNM::Field<int>* bodySlot;
 BNM::Field<int>* legSlot;
 BNM::Field<bool>* accessory;
 
-void SetDefaults(BNM::UnityEngine::Object* i, int t) {
+void SetDefaults(BNM::UnityEngine::Object* i, int t, bool n, BNM::UnityEngine::Object* v) {
     headSlot->SetInstance(i);
     bodySlot->SetInstance(i);
     legSlot->SetInstance(i);
@@ -25,18 +25,18 @@ void SetDefaults(BNM::UnityEngine::Object* i, int t) {
     }
 }
 
-void (*old_SetDefaults)(BNM::UnityEngine::Object*, int);
-void SetDefaults_T(BNM::UnityEngine::Object* i, int t);
+void (*old_SetDefaults)(BNM::UnityEngine::Object*, int, bool, BNM::UnityEngine::Object*);
+void SetDefaults_T(BNM::UnityEngine::Object* i, int t, bool n, BNM::UnityEngine::Object* v);
 
 inline HookTemplate T_SetDefaults {
         (void*) SetDefaults_T,
         {  }
 };
 
-void SetDefaults_T(BNM::UnityEngine::Object* i, int t) {
-    ((void(*)(BNM::UnityEngine::Object*, int))old_SetDefaults)(i, t);
+void SetDefaults_T(BNM::UnityEngine::Object* i, int t, bool n, BNM::UnityEngine::Object* v) {
+    ((void(*)(BNM::UnityEngine::Object*, int, bool, BNM::UnityEngine::Object*))old_SetDefaults)(i, t, n, v);
     for (auto fun: T_SetDefaults.FunArray) {
-        if(fun) ((void(*)(void*, int))fun)(i, t);
+        if(fun) ((void(*)(void*, int, bool, BNM::UnityEngine::Object*))fun)(i, t, n, v);
     }
 }
 
@@ -47,13 +47,13 @@ public:
 
     int initialize(EFModAPI *mod, std::filesystem::path path) override {
 
-        old_SetDefaults = (void(*)(BNM::UnityEngine::Object*, int))mod->getAPI({
+        old_SetDefaults = (void(*)(BNM::UnityEngine::Object*, int, bool, BNM::UnityEngine::Object*))mod->getAPI({
                                               "Assembly-CSharp.dll",
                                               "Terraria",
                                               "Item",
                                               "SetDefaults",
                                               "old_fun",
-                                              1
+                                              3
         });
 
         legSlot = static_cast<BNM::Field<int>*>(mod->getAPI({"Assembly-CSharp.dll",
@@ -118,7 +118,7 @@ public:
                                                "Item",
                                                "SetDefaults",
                                                "hook>>void",
-                                               1,
+                                               3,
                                                &T_SetDefaults,
                                                { (void*)SetDefaults }
         });

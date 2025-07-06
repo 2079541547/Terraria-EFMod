@@ -1,0 +1,86 @@
+[info]
+name = "VeinMiner"
+author = "EternalFuture゙"
+version = "1.0.0"
+
+[github]
+open_source = true
+overview = "https://github.com/2079541547"
+url = "https://github.com/2079541547/Terraria-EFMod/tree/main/efmod/VeinMiner"
+
+[platform.windows]
+arm64 = false
+arm32 = false
+x86_64 = true
+x86 = true
+
+[platform.android]
+arm64 = true
+arm32 = true
+x86_64 = false
+x86 = false
+
+[introduce]
+zh-cn = """
+「VeinMiner」是一款高效的Terraria矿脉挖掘模组，可自动挖掘相连的同类型方块。
+
+主要特点：
+- 智能识别矿石脉系，一键挖掘整个矿脉
+- 可配置白名单和挖掘规则
+- 支持8方向或4方向邻域检测
+- 分帧处理避免卡顿，优化游戏性能
+
+注意：在服务器使用时需确保所有玩家安装相同版本。
+"""
+zh-hant = """
+「VeinMiner」是一款高效的Terraria礦脈挖掘模組，可自動挖掘相連的同類型方塊。
+
+主要特點：
+- 智能識別礦石脈系，一鍵挖掘整個礦脈
+- 可配置白名單和挖掘規則
+- 支援8方向或4方向鄰域檢測
+- 分幀處理避免卡頓，優化遊戲性能
+
+注意：在伺服器使用時需確保所有玩家安裝相同版本。
+"""
+en = """
+"VeinMiner" is an efficient Terraria mod for vein mining that automatically mines connected blocks of the same type.
+
+Main features:
+- Intelligent ore vein detection with one-click mining
+- Configurable whitelist and mining rules
+- Supports 8-direction or 4-direction neighborhood detection
+- Frame-based processing to prevent lag and optimize performance
+
+Note: Ensure all players have the same version when used on servers.
+"""
+ja = """
+「VeinMiner」は、同じタイプの接続されたブロックを自動的に採掘する効率的なTerraria採掘MODです。
+
+主な特徴：
+- 鉱脈をインテリジェントに検出し、ワンクリックで採掘
+- ホワイトリストと採掘ルールの設定可能
+- 8方向または4方向の近傍検出をサポート
+- ラグを防ぐフレームベースの処理とパフォーマンス最適化
+
+注意：サーバーで使用する場合は全プレイヤーが同じバージョンであることを確認してください。
+"""
+ko = """
+「VeinMiner」는 같은 유형의 연결된 블록을 자동으로 채굴하는 효율적인 Terraria 채굴 모드입니다.
+
+주요 특징:
+- 광맥을 지능적으로 감지하여 한 번의 클릭으로 채굴
+- 화이트리스트 및 채굴 규칙 구성 가능
+- 8방향 또는 4방향 이웃 감지 지원
+- 렉 방지를 위한 프레임 기반 처리 및 성능 최적화
+
+참고: 서버에서 사용할 때는 모든 플레이어가 동일한 버전을 사용해야 합니다.
+"""
+
+[[loaders]]
+name = "TEFModLoader-EternalFuture゙"
+supported_versions = ["2025-05-24"]
+
+[mod]
+standards = 20250517
+modx = false

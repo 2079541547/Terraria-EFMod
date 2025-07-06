@@ -1,0 +1,3 @@
+/home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/ForgottenItem.dir
+/home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/edit_cache.dir
+/home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/rebuild_cache.dir

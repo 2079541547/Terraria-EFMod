@@ -1,0 +1,126 @@
+[info]
+name = "InfiniteLegion"
+author = "EternalFuture゙"
+version = "1.0.1"
+
+[github]
+open_source = true
+overview = "https://github.com/2079541547"
+url = "https://github.com/2079541547/Terraria-EFMod/tree/main/efmod/InfiniteLegion"
+
+[platform.windows]
+arm64 = false
+arm32 = false
+x86_64 = true
+x86 = false
+
+[platform.android]
+arm64 = true
+arm32 = true
+x86_64 = false
+x86 = false
+
+[introduce]
+zh-cn = """
+「InfiniteLegion」是专为召唤师设计的Terraria模组，解除游戏默认的召唤数量限制。
+
+核心功能：
+- 完全移除召唤物数量上限
+- 不修改其他游戏机制
+
+注意：
+- 需手动搭配召唤师装备使用
+- 召唤过多可能影响性能
+"""
+
+zh-hant = """
+「InfiniteLegion」是專為召喚師設計的Terraria模組，解除遊戲預設的召喚數量限制。
+
+核心功能：
+- 完全移除召喚物數量上限
+- 不修改其他遊戲機制
+
+注意：
+- 需手動搭配召喚師裝備使用
+- 召喚過多可能影響效能
+"""
+
+en = """
+"InfiniteLegion" is a Terraria mod for summoners, removing default minion limits.
+
+Features:
+- Completely removes summon cap
+- No other game mechanics altered
+
+Note:
+- Requires manual use of summoner gear
+- Performance may drop with excessive summons
+"""
+
+ja = """
+「InfiniteLegion」は召喚師向けTerraria MODで、召喚数制限を解除します。
+
+機能：
+- 召喚数上限を完全解除
+- 他のゲームシステムは変更なし
+
+注意：
+- 召喚師装備の手動使用が必要
+- 召喚数過多で動作が重くなる可能性あり
+"""
+
+ko = """
+「InfiniteLegion」는 소환사를 위한 Terraria 모드로, 기본 소환 제한을 해제합니다.
+
+주요 기능:
+- 소환물 제한 완전 해제
+- 다른 게임 시스템은 변경하지 않음
+
+주의:
+- 소환사 장비를 수동으로 장착해야 함
+- 소환 수 과다 시 성능 저하 가능성
+"""
+
+fr = """
+"InfiniteLegion" est un mod Terraria pour les invocateurs, supprimant les limites d'invocation.
+
+Fonctions :
+- Supprime entièrement la limite d'invocations
+- Ne modifie pas d'autres mécaniques
+
+Note :
+- Requiert l'équipement d'invocateur manuellement
+- Trop d'invocations peut ralentir le jeu
+"""
+
+es = """
+"InfiniteLegion" es un mod de Terraria para invocadores, eliminando los límites predeterminados.
+
+Características:
+- Elimina por completo el límite de invocaciones
+- No altera otras mecánicas
+
+Nota:
+- Requiere equipo de invocador manual
+- Demasiadas invocaciones pueden afectar el rendimiento
+"""
+
+de = """
+"InfiniteLegion" ist ein Terraria-Mod für Beschwörer, das Standardlimits entfernt.
+
+Funktionen:
+- Hebt Beschwörungslimit vollständig auf
+- Verändert keine anderen Spielmechaniken
+
+Hinweis:
+- Beschwörerausrüstung muss manuell genutzt werden
+- Zu viele Beschwörungen können Leistung beeinträchtigen
+"""
+
+[[loaders]]
+name = "TEFModLoader-EternalFuture゙"
+supported_versions = ["2025-05-24"]
+
+[mod]
+standards = 20250517
+modx = false

@@ -1,0 +1,41 @@
+[info]
+name = "TexturePack"
+author = "EternalFuture゙"
+version = "1.2.4"
+
+[github]
+open_source = true
+overview = "https://github.com/2079541547"
+url = "https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TexturePack"
+
+[platform.windows]
+arm64 = false
+arm32 = false
+x86_64 = false
+x86 = false
+
+[platform.android]
+arm64 = true
+arm32 = true
+x86_64 = false
+x86 = false
+
+[introduce]
+zh-cn = "添加了游戏对材质包的支持，兼容主机端的材质包以及TL Pro的材质包"
+zh-hant = "添加了遊戲對材質包的支持，兼容主機端的材質包以及TL Pro的材質包"
+en = "Added support for texture packs in the game, compatible with console texture packs and TL Pro texture packs"
+ja = "ゲームにテクスチャパックのサポートを追加しました。コンソール版のテクスチャパックおよびTL Proのテクスチャパックと互換性があります"
+ko = "게임에 텍스처 팩 지원이 추가되었으며, 콘솔용 텍스처 팩 및 TL Pro 텍스처 팩과 호환됩니다"
+it = "Aggiunto supporto per i pacchetti texture nel gioco, compatibile con i pacchetti texture per console e i pacchetti TL Pro"
+es = "Se añadió soporte para paquetes de texturas en el juego, compatible con paquetes de texturas de consola y paquetes TL Pro"
+fr = "Ajout de la prise en charge des packs de textures dans le jeu, compatible avec les packs de textures console et les packs TL Pro"
+de = "Unterstützung für Texture-Packs im Spiel hinzugefügt, kompatibel mit Console-Texture-Packs und TL Pro-Texture-Packs"
+
+[[loaders]]
+name = "TEFModLoader-EternalFuture゙"
+supported_versions = ["20250316"]
+
+[mod]
+standards = 20250316
+modx = true
+pageClass = "eternal.future.texturepack.EFModPage"

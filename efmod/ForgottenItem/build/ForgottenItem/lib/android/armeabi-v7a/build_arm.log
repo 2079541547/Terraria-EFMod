@@ -1,0 +1,150 @@
+-- ANDROID_PLATFORM not set. Defaulting to minimum supported version
+21.
+-- The C compiler identification is Clang 19.0.0
+-- The CXX compiler identification is Clang 19.0.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /home/yuwu/Android/Sdk/ndk/28.0.12916984/toolchains/llvm/prebuilt/linux-x86_64/bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /home/yuwu/Android/Sdk/ndk/28.0.12916984/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (0.6s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:146 (include)
+  CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android.toolchain.cmake:55 (include)
+  /usr/share/cmake-3.31/Modules/CMakeDetermineSystem.cmake:146 (include)
+  CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/3.31.6/CMakeSystem.cmake:6 (include)
+  CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.31/Modules/Platform/Android-Clang.cmake:23 (include)
+  /usr/share/cmake-3.31/Modules/Platform/Android-Clang-C.cmake:1 (include)
+  /usr/share/cmake-3.31/Modules/CMakeCInformation.cmake:48 (include)
+  CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/3.31.6/CMakeSystem.cmake:6 (include)
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/CMakeScratch/TryCompile-0JDzwb/CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android.toolchain.cmake:55 (include)
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/3.31.6/CMakeSystem.cmake:6 (include)
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/CMakeScratch/TryCompile-0JDzwb/CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.31/Modules/Platform/Android-Clang.cmake:23 (include)
+  /usr/share/cmake-3.31/Modules/Platform/Android-Clang-C.cmake:1 (include)
+  /usr/share/cmake-3.31/Modules/CMakeCInformation.cmake:48 (include)
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/CMakeScratch/TryCompile-0JDzwb/CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/3.31.6/CMakeSystem.cmake:6 (include)
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/CMakeScratch/TryCompile-3e2KX3/CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/android.toolchain.cmake:55 (include)
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/3.31.6/CMakeSystem.cmake:6 (include)
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/CMakeScratch/TryCompile-3e2KX3/CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at /home/yuwu/Android/Sdk/ndk/28.0.12916984/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  /usr/share/cmake-3.31/Modules/Platform/Android-Clang.cmake:23 (include)
+  /usr/share/cmake-3.31/Modules/Platform/Android-Clang-CXX.cmake:1 (include)
+  /usr/share/cmake-3.31/Modules/CMakeCXXInformation.cmake:48 (include)
+  /home/yuwu/开源项目/Gitlab/terraria-efmod/efmod/ForgottenItem/build/ForgottenItem/lib/android/armeabi-v7a/temp/CMakeFiles/CMakeScratch/TryCompile-3e2KX3/CMakeLists.txt:2 (project)
+
+
+[ 14%] Building CXX object CMakeFiles/ForgottenItem.dir/src/efmod.cpp.o
+make[2]: *** [CMakeFiles/ForgottenItem.dir/build.make:79: CMakeFiles/ForgottenItem.dir/src/efmod.cpp.o] 中断
+make[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/ForgottenItem.dir/all] 中断
+make: *** [Makefile:91: all] 中断

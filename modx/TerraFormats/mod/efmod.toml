@@ -1,0 +1,41 @@
+[info]
+name = "TerraFormats"
+author = "EternalFuture゙"
+version = "1.1.1"
+
+[github]
+open_source = true
+overview = "https://github.com/2079541547"
+url = "https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+
+[platform.windows]
+arm64 = false
+arm32 = false
+x86_64 = false
+x86 = false
+
+[platform.android]
+arm64 = true
+arm32 = true
+x86_64 = false
+x86 = false
+
+[introduce]
+zh-cn = "添加了游戏对语言包的支持，不过格式它是独立的，详细见：https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+zh-hant = "添加了遊戲對語言包的支持，不過格式是獨立的，詳細見：https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+en = "Added game support for language packs, but the format is independent. For details, see: https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+ja = "ゲームが言語パックに対応しましたが、フォーマットは独立しています。詳細はこちらをご覧ください：https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+ko = "게임이 언어 팩을 지원하도록 추가되었지만, 형식은 독립적입니다. 자세한 내용은 다음을 참조하세요: https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+it = "Aggiunto il supporto del gioco per i pacchetti linguistici, ma il formato è indipendente. Per i dettagli, consulta: https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+es = "Se añadió soporte para paquetes de idiomas en el juego, pero el formato es independiente. Para más detalles, consulta: https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+fr = "Ajout de la prise en charge des packs de langues dans le jeu, mais le format est indépendant. Pour plus de détails, voir : https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+de = "Unterstützung für Sprachpakete im Spiel hinzugefügt, aber das Format ist unabhängig. Einzelheiten finden Sie unter: https://github.com/2079541547/Terraria-EFMod/tree/main/modx/TerraFormats"
+
+[[loaders]]
+name = "TEFModLoader-EternalFuture゙"
+supported_versions = ["20250316"]
+
+[mod]
+standards = 20250316
+modx = true
+pageClass = "eternal.future.tefmodcommon.EFModPage"

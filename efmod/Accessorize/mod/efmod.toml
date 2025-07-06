@@ -1,0 +1,40 @@
+[info]
+name = "饰品化(Accessorize)"
+author = "EternalFuture゙"
+version = "1.1.0"
+
+[github]
+open_source = true
+overview = "https://github.com/2079541547"
+url = "https://github.com/2079541547/Terraria-EFMod/tree/main/efmod/Accessorize"
+
+[platform.windows]
+arm64 = false
+arm32 = false
+x86_64 = false
+x86 = false
+
+[platform.android]
+arm64 = true
+arm32 = true
+x86_64 = false
+x86 = false
+
+[introduce]
+zh-cn = "装备允许被佩戴为饰品"
+zh-hant = "裝備允許被佩戴為飾品"
+en = "Equipment can now be worn as accessories!"
+ja = "装備をアクセサリーとして装備できるようになりました！"
+ko = "이제 장비를 액세서리로 착용할 수 있습니다!"
+it = "L'equipaggiamento può ora essere indossato come accessori!"
+es = "¡El equipo ahora se puede usar como accesorios!"
+fr = "L'équipement peut maintenant être porté comme accessoire !"
+de = "Ausrüstung kann jetzt als Accessoires getragen werden!"
+
+[[loaders]]
+name = "TEFModLoader-EternalFuture゙"
+supported_versions = ["2025-05-24"]
+
+[mod]
+standards = 20250517
+modx = false

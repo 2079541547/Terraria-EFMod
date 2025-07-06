@@ -1,0 +1,121 @@
+[info]
+name = "InstantRespawn"
+author = "EternalFuture゙"
+version = "1.0.0"
+
+[github]
+open_source = true
+overview = "https://github.com/2079541547"
+url = "https://github.com/2079541547/Terraria-EFMod/tree/main/efmod/InstantRespawn"
+
+[platform.windows]
+arm64 = false
+arm32 = false
+x86_64 = false
+x86 = false
+
+[platform.android]
+arm64 = true
+arm32 = true
+x86_64 = false
+x86 = false
+
+[introduce]
+zh-cn = """
+「InstantRespawn」是一款实用的Terraria模组，主要功能是让玩家在死亡后能够立即复活，无需等待倒计时结束。
+
+主要特点：
+- 死亡后瞬间复活，节省等待时间
+- 保持游戏原有平衡性，不修改其他游戏机制
+- 特别适合特别菜的玩家和测试场景使用
+
+注意：在PvP模式中使用可能会影响游戏公平性。
+"""
+zh-hant = """
+「InstantRespawn」是一款實用的Terraria模組，主要功能是讓玩家在死亡後能夠立即復活，無需等待倒計時結束。
+
+主要特點：
+- 死亡後瞬間復活，節省等待時間
+- 保持遊戲原有平衡性，不修改其他遊戲機制
+- 特別適合技術欠佳的玩家和測試場景使用
+
+注意：在PvP模式中使用可能會影響遊戲公平性。
+"""
+en = """
+"InstantRespawn" is a practical Terraria mod that allows players to respawn immediately after death without waiting for the countdown.
+
+Main features:
+- Instant respawn after death, saving waiting time
+- Maintains original game balance without modifying other game mechanics
+- Particularly suitable for novice players and testing scenarios
+
+Note: May affect fairness when used in PvP mode.
+"""
+ja = """
+「InstantRespawn」は、Terrariaの実用的なMODで、プレイヤーが死亡後、カウントダウンを待たずに即座に復活できるようにします。
+
+主な特徴：
+- 死亡後即時復活、待ち時間を節約
+- 他のゲームメカニズムを変更せず、ゲームのバランスを維持
+- 初心者プレイヤーやテストシナリオに特に適しています
+
+注意：PvPモードで使用すると公平性に影響する可能性があります。
+"""
+ko = """
+「InstantRespawn」는 Terraria의 실용적인 모드로, 플레이어가 죽은 후 카운트다운을 기다리지 않고 즉시 부활할 수 있게 합니다.
+
+주요 특징:
+- 사망 후 즉시 부활, 대기 시간 절약
+- 다른 게임 메커니즘을 변경하지 않고 원래 게임 밸런스 유지
+- 초보자 플레이어와 테스트 시나리오에 특히 적합
+
+참고: PvP 모드에서 사용 시 게임 공정성에 영향을 줄 수 있습니다.
+"""
+it = """
+"InstantRespawn" è una mod pratica per Terraria che permette ai giocatori di respawnare immediatamente dopo la morte senza attendere il conto alla rovescia.
+
+Caratteristiche principali:
+- Respawn immediato dopo la morte, risparmiando tempo di attesa
+- Mantiene l'equilibrio originale del gioco senza modificare altri meccanismi
+- Particolarmente adatto per giocatori principianti e scenari di test
+
+Nota: Potrebbe influire sull'equità se utilizzato in modalità PvP.
+"""
+es = """
+"InstantRespawn" es un mod práctico para Terraria que permite a los jugadores reaparecer inmediatamente después de la muerte sin esperar la cuenta regresiva.
+
+Características principales:
+- Reaparición instantánea tras la muerte, ahorrando tiempo de espera
+- Mantiene el equilibrio original del juego sin modificar otros mecanismos
+- Especialmente adecuado para jugadores novatos y escenarios de prueba
+
+Nota: Puede afectar la equidad cuando se usa en modo PvP.
+"""
+fr = """
+"InstantRespawn" est un mod pratique pour Terraria qui permet aux joueurs de réapparaître immédiatement après la mort sans attendre le compte à rebours.
+
+Principales caractéristiques :
+- Réapparition instantanée après la mort, économisant du temps d'attente
+- Maintient l'équilibre original du jeu sans modifier d'autres mécanismes
+- Particulièrement adapté aux joueurs débutants et aux scénarios de test
+
+Remarque : Peut affecter l'équité en mode PvP.
+"""
+de = """
+"InstantRespawn" ist eine praktische Terraria-Mod, die es Spielern ermöglicht, sofort nach dem Tod wiederzubeleben, ohne auf den Countdown warten zu müssen.
+
+Hauptmerkmale:
+- Sofortige Wiederbelebung nach dem Tod, spart Wartezeit
+- Behält das ursprüngliche Spielgleichgewicht bei, ohne andere Spielmechaniken zu verändern
+- Besonders geeignet für Anfänger und Testszenarien
+
+Hinweis: Kann die Fairness im PvP-Modus beeinträchtigen.
+"""
+
+[[loaders]]
+name = "TEFModLoader-EternalFuture゙"
+supported_versions = ["2025-05-24"]
+
+[mod]
+standards = 20250517
+modx = false
